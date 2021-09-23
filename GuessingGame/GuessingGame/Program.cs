@@ -34,7 +34,9 @@ namespace GuessingGame
             playerName = Console.ReadLine();
             CheckForExit(playerName);
 
-            //Console.WriteLine($"\n{theAnswer}");
+
+
+            Console.WriteLine($"\n{theAnswer}");
 
             do
             {
@@ -52,17 +54,20 @@ namespace GuessingGame
                         {
                             if (count == 0)
                             {
-                                Console.WriteLine($"Hey {playerName}, you guessed correctly on your first try! {theAnswer} was the number. You win!");
+                                
+                                
+
+                                Console.WriteLine($"Hey {playerName}, you guessed correctly on your first try! {theAnswer} was the number. You win!", Console.ForegroundColor = ConsoleColor.Green);
                                 count++;
-                                Console.WriteLine($"Attempts: {count}\n");
+                                Console.WriteLine($"Attempts: {count}\n", Console.ForegroundColor = ConsoleColor.Gray);
                                 Console.WriteLine("The game is over, press Q to quit.");
                                 CheckForExit(playerInput);
                             }
                             else 
                             {
-                                Console.WriteLine($"Hey {playerName}, {theAnswer} was the number. You win!");
+                                Console.WriteLine($"Hey {playerName}, {theAnswer} was the number. You win!", Console.ForegroundColor = ConsoleColor.Green);
                                 count++;
-                                Console.WriteLine($"Attempts: {count}\n");
+                                Console.WriteLine($"Attempts: {count}\n", Console.ForegroundColor = ConsoleColor.Gray);
                                 Console.WriteLine("The game is over, press Q to quit.");
                                 CheckForExit(playerInput);
                             }
@@ -71,29 +76,31 @@ namespace GuessingGame
                         {
                             if (playerGuess > theAnswer)
                             {
-                                Console.WriteLine($"Hey {playerName}, your guess was too high, try again.\n");
+                                Console.WriteLine($"Hey {playerName}, your guess was too high, try again.\n", Console.ForegroundColor = ConsoleColor.Red);
                                 count++;
-                                Console.WriteLine($"Attempts: {count}\n");
+                                Console.WriteLine($"Attempts: {count}\n", Console.ForegroundColor = ConsoleColor.Gray);
                                 CheckForExit(playerInput);
                             }
                             else
                             {
-                                Console.WriteLine($"Hey {playerName}, your guess was too low, try again.\n");
+                                Console.WriteLine($"Hey {playerName}, your guess was too low, try again.\n", Console.ForegroundColor = ConsoleColor.Red);
                                 count++;
-                                Console.WriteLine($"Attempts: {count}\n");
+                                Console.WriteLine($"Attempts: {count}\n", Console.ForegroundColor = ConsoleColor.Gray);
                                 CheckForExit(playerInput);
                             }
                         }
                     }
                     else
                     {
-                        Console.WriteLine($"Hey {playerName}, {playerGuess} is not in the range. Try again.\n");
+                        Console.WriteLine($"Hey {playerName}, {playerGuess} is not in the range. Try again.\n", Console.ForegroundColor = ConsoleColor.Red);
+                        Console.ForegroundColor = ConsoleColor.Gray;
                         CheckForExit(playerInput);
                     }
                 }
                 else
                 {
-                    Console.WriteLine($"Hey {playerName}, you entered {playerGuess}, which is not a number!\n");
+                    Console.WriteLine($"Hey {playerName}, you entered {playerGuess}, which is not a number!\n", Console.ForegroundColor = ConsoleColor.Red);
+                    Console.ForegroundColor = ConsoleColor.Gray;
                     CheckForExit(playerInput);
                 }
 
