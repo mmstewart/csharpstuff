@@ -67,7 +67,7 @@ namespace GuessingGame
                 }
                 else
                 {
-                    Console.WriteLine("\nInvalid difficulty, try again.");
+                    Console.WriteLine("\nInvalid choice, choose another difficulty.");
                 }
             } while (chooseDifficulty == false);
 
