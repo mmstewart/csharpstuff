@@ -22,10 +22,14 @@ namespace GuessingGame
 
         static void Main(string[] args)
         {
+            bool isPlaying;
             int count = 0;
+            int operationMax = 2;
+            bool chooseDifficulty = false;
 
             Random r = new Random();
-            var theAnswer = r.Next(1, 21);
+            var theAnswer = r.Next(1, operationMax);
+
             Console.WriteLine("Press Q to quit.\n");
 
             // get player name
@@ -33,20 +37,51 @@ namespace GuessingGame
             var playerName = Console.ReadLine();
             CheckForExit(playerName);
 
-            Console.WriteLine($"\n{theAnswer}");
+            // get player's diffculty choice
+            do
+            {
+                var easy = "easy";
+                var normal = "normal";
+                var hard = "hard";
+                Console.WriteLine("Easy: 1-5");
+                Console.WriteLine("Normal: 1-20");
+                Console.WriteLine("Hard: 1-50");
+                Console.WriteLine("\nChoose a mode to find the correct random number: ");
+                var difficulty = Console.ReadLine().ToLower();
 
-            bool isPlaying;
+                if (difficulty == easy || difficulty == normal || difficulty == hard)
+                {
+                    chooseDifficulty = true;
+                    switch (difficulty)
+                    {
+                        case "easy":
+                            operationMax = 5;
+                            break;
+                        case "normal":
+                            operationMax = 20;
+                            break;
+                        case "hard":
+                            operationMax = 50;
+                            break;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("\nInvalid difficulty, try again.");
+                }
+            } while (chooseDifficulty == false);
+
             do
             {
                 // get player input
-                Console.Write("\nEnter your guess (1-20): ");
+                Console.Write($"\nEnter your guess (1-{operationMax}): ");
                 var playerInput = Console.ReadLine();
                 CheckForExit(playerInput);
 
                 //attempt to convert the string to a number
                 if (int.TryParse(playerInput, out var playerGuess))
                 {
-                    if (playerGuess >= 1 && playerGuess <= 20)
+                    if (playerGuess >= 1 && playerGuess <= operationMax)
                     {
                         if (playerGuess == theAnswer)
                         {
