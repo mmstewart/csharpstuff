@@ -56,12 +56,15 @@ namespace GuessingGame
                     {
                         case "easy":
                             operationMax = 5;
+                            theAnswer = r.Next(1, operationMax);
                             break;
                         case "normal":
                             operationMax = 20;
+                            theAnswer = r.Next(1, operationMax);
                             break;
                         case "hard":
                             operationMax = 50;
+                            theAnswer = r.Next(1, operationMax);
                             break;
                     }
                 }
@@ -100,7 +103,10 @@ namespace GuessingGame
                                 Console.WriteLine("The game is over, press Q to quit.");
                             }
 
-                            Console.ReadKey();
+                            while (Console.ReadKey().Key != ConsoleKey.Q)
+                            {
+                                Console.WriteLine("\nPress Q to quit");
+                            }
                             isPlaying = false;
                         }
                         else
